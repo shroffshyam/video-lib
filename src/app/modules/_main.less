@@ -1,0 +1,165 @@
+
+.list-container{
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  cursor:pointer;
+
+}
+
+.collection-item{
+  padding:20px;
+  position:relative;
+  flex: 0 0 33%;
+  outline:none;
+
+  &.active{
+    outline:none;
+    .image-circle-medium{
+      border:9px solid @cyan;
+    }
+    .card-title,
+    .card-desc{
+      color:@cyan;
+    }
+  }
+}
+.card-title, .card-desc{
+  text-align:center;
+  .padding-top-10;
+}
+
+.image-circle-medium{
+  width:122px;
+  height:122px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  margin:auto;
+}
+
+.image-circle-small{
+  width:66px;
+  height:66px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: auto 0;
+}
+
+.image-box-medium{
+  width:174px;
+  height:262px;
+}
+
+.image-box-large{
+  max-width:347px;
+  max-height:420px;
+}
+
+.card{
+  display:flex;
+  padding:10px 10px;
+  outline:none;
+
+  &.active{
+    outline:none;
+    .image-circle-small{
+      border:9px solid @cyan;
+    }
+    .card-title,
+    .card-desc{
+      color:@cyan;
+    }
+  }
+}
+
+.card-text{
+  margin-left:10px;
+}
+
+/** page details*/
+.movies-list{
+    position: fixed;
+    z-index: 100;
+    max-height: 100%;
+    overflow: auto;
+    -webkit-backface-visibility: hidden;
+    background-color: #F7F7F7;
+    padding: 15px;
+    top: 50px;
+    width:100%;
+}
+
+.movies-details{
+  position: absolute;
+  overflow: auto;
+  max-height: 100%;
+  -webkit-backface-visibility: hidden;
+  padding:15px;
+  top: 50px;
+}
+
+.details-content{
+  margin-left:15px;
+}
+
+.page {
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+}
+
+/* Right side open */
+.open-right .movies-details {
+  width:66%;
+  margin-left:33%;
+  display:inline-block;
+}
+
+.open-right .movies-list{
+  z-index: 200;
+  width:33%;
+  box-shadow: -5px 0px 6px -3px #888 inset;
+  display:block;
+}
+
+
+.reset .movies-list{
+  z-index: 200;
+  width:100%;
+  box-shadow: none;
+  display:block;
+}
+
+.reset .movies-details{
+  width:100%;
+  margin-left:0;
+  display:block;
+}
+
+/* media query */
+@media screen and (max-width: 768px) {
+  .movies-list{
+    opacity:1;
+    width:100%;
+  }
+  .movies-details{
+    width:100%;
+    opacity:0;
+  }
+
+  .open-right .movies-list{
+    z-index: 200;
+    width:0;
+    opacity:0;
+  }
+
+  .open-right .movies-details {
+    width:100%;
+    margin-left:0;
+    display:block;
+    opacity:1;
+  }
+}

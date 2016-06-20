@@ -1,0 +1,63 @@
+@font-family-base: helvetica, Arial;
+
+@font-size-base: 14px;
+@font-size-large: 24px;
+@line-height-base: 18px;
+
+@cyan : #1a9dba;
+@dark-gray:#484949;
+@red:#ff0000;
+
+body{
+  font-family: @font-family-base;
+  font-size:@font-size-base;
+  line-height:@line-height-base;
+  font-color:@dark-gray;
+}
+
+header{
+  height:50px;
+  background:@dark-gray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index:999;
+}
+
+h1, h2{
+  text-transform:uppercase;
+  font-weight:800;
+  margin:0;
+  padding:0;
+}
+
+h1{
+  color:@cyan;
+  font-size:@font-size-large;
+}
+
+h2{
+  font-size:@font-size-base;
+}
+
+.border-bottom{
+  border-bottom:2px solid #666;
+  margin-bottom:10px;
+}
+
+.padding-top-10{
+  padding-top:10px;
+}
+
+.padding-bottom-15{
+  padding-bottom:15px;
+}
+
+.margin-top-25{
+  margin-top:25px;
+}
+
+
+
+

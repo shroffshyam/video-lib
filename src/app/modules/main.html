@@ -1,0 +1,85 @@
+<header></header>
+<main ng-init="main.getCollection()" ng-class="{'open-right':main.movieSelected, reset:!main.movieSelected}">
+    <!-- list items view -->
+    <section class="page movies-list">
+        <div class="list-content">
+            <h1 class="border-bottom">
+                <a ng-show="main.movieSelected" ng-click="main.movieSelected = false; main.movieSelectedId = 0;" class="back back-left" title="back to movies list">←</a>
+                browse movies
+            </h1>
+            <ul class="list-unstyled list-container">
+                <li class="collection-item" ng-click="main.getMovieDetails(movie.id)" ng-class="{active: movie.id == main.movieSelectedId}" ng-repeat="movie in main.collection.parts" data-id="{{movie.id}}">
+                    <div class="image-circle-medium">
+                        <img class="img-responsive" err-src="/assets/images/error-image.jpg" ng-src="http://image.tmdb.org/t/p/w154/{{movie.poster_path}}">
+                    </div>
+                    <h2 class="card-title">{{movie.title}}</h2>
+                    <p class="card-desc">{{movie.title}}</p>
+                </li>
+                <li class="animate-repeat" ng-if="collection.parts.length === 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- details view -->
+    <section class="page movies-details" ng-show="main.movieSelected">
+        <div class="details-content">
+            <!-- About movie sections -->
+            <div class="row">
+                <h1 class="border-bottom">{{main.movieDetails.details.title}}</h1>
+                <div class="col-xs-12 col-md-4">
+                    <div class="image-box-medium">
+                        <img class="img-responsive" err-src="/assets/images/error-image.jpg" ng-src="http://image.tmdb.org/t/p/w185/{{main.movieDetails.details.poster_path}}">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-8">
+                    <div>
+                        <h2 class="padding-bottom-15"> who made it? </h2>
+                        <div class="director" ng-if="main.movieDetails.directors.length > 0">
+                            <strong>Director </strong>
+                            <span ng-repeat="director in main.movieDetails.directors">
+                            {{director.name}}{{$last ? '' : ', '}}</span>
+                        </div>
+                        <div class="writer" ng-if="main.movieDetails.writers.length > 0">
+                            <strong>Writer </strong>
+                            <span ng-repeat="writer in main.movieDetails.writers">{{writer.name}}{{$last ? '' : ', '}}</span>
+                        </div>
+                        <div class="star" ng-if="main.movieDetails.stars.length > 0">
+                            <strong>Stars </strong>
+                            <span ng-repeat="stars in main.movieDetails.stars">{{stars.name}}{{$last ? '' : ', '}}</span>
+                        </div>
+                    </div>
+                    <div class="margin-top-25">
+                        <h2 class="padding-bottom-15">What is it about?</h2>
+                        <p>{{main.movieDetails.details.overview}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- credits sections -->
+            <div class="row">
+                <h1 class="border-bottom">movie credits</h1>
+                <div class="col-xs-12 col-md-6">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="cast in main.movieDetails.credits" class="card" ng-click="main.updatePosterImage(cast)" ng-class="{active: cast.profile_path === main.selectedPosterImage}">
+                            <div class="image-circle-small card-media">
+                                <img class="img-responsive" err-src="/assets/images/error-image.jpg" ng-src="http://image.tmdb.org/t/p/w92/{{cast.profile_path}}">
+                            </div>
+                            <div class="card-text">
+                                <h2 class="card-title">{{cast.name}}</h2>
+                                <span class="card-desc">{{cast.character}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <!--poster image -->
+                    {{imageUrl}}
+                    <div class="image-box-large">
+                        <img class="img-responsive" ng-if="!main.selectedPosterImage" err-src="/assets/images/error-image.jpg" ng-src="http://image.tmdb.org/t/p/w500/{{main.movieDetails.stars[0].profile_path}}">
+                        <img class="img-responsive" ng-if="main.selectedPosterImage" err-src="/assets/images/error-image.jpg" ng-src="http://image.tmdb.org/t/p/w500/{{main.selectedPosterImage}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
